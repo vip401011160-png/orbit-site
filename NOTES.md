@@ -39,3 +39,11 @@ npx wrangler pages deploy /workspace/orbit-site --project-name=orbit-site
 - [x] HTML 无真实姓名
 - [x] 无存款/隐私数字
 - [x] 无小红书来源表述
+
+## Live
+
+- **GitHub Pages:** https://vip401011160-png.github.io/orbit-site/
+- **Repo:** https://github.com/vip401011160-png/orbit-site
+- Cloudflare Pages: blocked on this box (Node 20; wrangler needs ≥22 + login). Optional later after `wrangler login`.
+
+连连「店铺链接」可先填上述 github.io 地址。
