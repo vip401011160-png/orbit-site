@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="description" content="污兔福利小站 — 一张自拍，变成约 3 秒的 360° 环绕。污兔酱 × 萝卜。" />
-  <meta name="theme-color" content="#faf7f2" />
+  <meta name="theme-color" content="#f7f2eb" />
   <meta property="og:title" content="污兔福利小站" />
   <meta property="og:description" content="一张照片 → 约 3 秒 360° 环绕。污兔酱 × 萝卜。" />
   <meta property="og:type" content="website" />
@@ -13,15 +13,19 @@
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="ambient" aria-hidden="true"></div>
+  <div class="grain" aria-hidden="true"></div>
 
   <header class="nav">
     <div class="wrap nav-inner">
-      <a class="logo" href="#top">污兔福利小站</a>
+      <a class="logo" href="#top">
+        <span class="logo-mark" aria-hidden="true"></span>
+        <span>污兔福利小站</span>
+      </a>
       <nav class="nav-links" aria-label="页面导航">
         <a href="#how">流程</a>
         <a href="#pricing">价格</a>
@@ -33,51 +37,100 @@
   <main id="top">
     <section class="hero wrap">
       <div class="hero-copy">
-        <p class="eyebrow">污兔酱 × 萝卜</p>
-        <h1>一张自拍<br />变成 360°</h1>
-        <p class="lead">上传 · 付款 · 下载。<br />约 3 秒可循环环绕。</p>
-        <div class="cta-row">
-          <a class="btn btn-fill" href="#buy">¥7–9.9 试试</a>
-          <a class="btn btn-ghost" href="#demo">看 Demo</a>
+        <div class="pill-row">
+          <span class="pill">污兔酱 × 萝卜</span>
+          <span class="pill pill--soft">数字内容 · 即下即用</span>
         </div>
+        <h1>一张自拍<br /><em>变成 360°</em></h1>
+        <p class="lead">上传照片，付一笔小单，几分钟拿到可循环的环绕短片——发动态、当头像物料都好看。</p>
+        <div class="cta-row">
+          <a class="btn btn-fill" href="#buy">¥7–9.9 先试一张</a>
+          <a class="btn btn-ghost" href="#demo">
+            <span class="play-dot" aria-hidden="true"></span>
+            看 Demo
+          </a>
+        </div>
+        <ul class="trust">
+          <li>约 3 秒可循环</li>
+          <li>MP4 直接下载</li>
+          <li>公开页不收证件</li>
+        </ul>
       </div>
-      <figure class="demo" id="demo">
-        <video
-          src="demo/orbit-demo.mp4"
-          poster="demo/poster.jpg"
-          autoplay
-          muted
-          loop
-          playsinline
-          controls
-          aria-label="360度环绕演示"
-        ></video>
-      </figure>
+
+      <div class="hero-visual">
+        <div class="glow" aria-hidden="true"></div>
+        <figure class="demo" id="demo">
+          <div class="demo-chrome">
+            <span></span><span></span><span></span>
+            <p>Orbit Demo</p>
+          </div>
+          <video
+            src="demo/orbit-demo.mp4"
+            poster="demo/poster.jpg"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            aria-label="360度环绕演示"
+          ></video>
+          <figcaption class="demo-cap">
+            <span class="live-dot" aria-hidden="true"></span>
+            真实成片预览 · 循环播放
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="strip wrap" aria-label="亮点">
+      <div class="strip-card">
+        <strong>轻量</strong>
+        <p>自拍就能做，不用专业棚拍</p>
+      </div>
+      <div class="strip-card">
+        <strong>好看</strong>
+        <p>环绕镜头感，适合发动态</p>
+      </div>
+      <div class="strip-card">
+        <strong>省心</strong>
+        <p>付完开做，成片自己下</p>
+      </div>
     </section>
 
     <section class="wrap section" id="how">
-      <p class="section-label">三步</p>
+      <div class="section-head">
+        <p class="section-label">How it works</p>
+        <h2>三步到手</h2>
+        <p class="section-sub">流程刻意做短，把时间留给效果本身。</p>
+      </div>
       <ol class="steps">
-        <li>
+        <li class="step-card">
           <span class="n">01</span>
+          <div class="step-icon" aria-hidden="true">↑</div>
           <h3>上传</h3>
-          <p>自拍即可，光线清楚更好看。</p>
+          <p>自拍或半身照即可，光线清楚、主体居中更好看。</p>
         </li>
-        <li>
+        <li class="step-card">
           <span class="n">02</span>
+          <div class="step-icon" aria-hidden="true">¥</div>
           <h3>付款</h3>
-          <p>¥7–9.9，付完开始出片。</p>
+          <p>¥7–9.9 小单验证，付完开始出片。</p>
         </li>
-        <li>
+        <li class="step-card">
           <span class="n">03</span>
+          <div class="step-icon" aria-hidden="true">↓</div>
           <h3>下载</h3>
-          <p>拿到可循环的 360° MP4。</p>
+          <p>拿到可循环的 360° MP4，想发哪发哪。</p>
         </li>
       </ol>
     </section>
 
     <section class="wrap section" id="pricing">
-      <p class="section-label">价格</p>
+      <div class="section-head">
+        <p class="section-label">Pricing</p>
+        <h2>先选你需要的</h2>
+        <p class="section-sub">主推环绕短片；清单与壁纸陆续上架。</p>
+      </div>
       <div class="price-grid">
         <article class="price-card price-card--main">
           <p class="price-tag">主推</p>
@@ -86,11 +139,12 @@
           <ul>
             <li>单图 → 约 3 秒 orbit</li>
             <li>可下载、可发动态</li>
-            <li>效果因图而异</li>
+            <li>效果因原图而异</li>
           </ul>
           <a class="btn btn-fill" href="#buy">选这个</a>
         </article>
         <article class="price-card">
+          <p class="price-tag price-tag--muted">资料</p>
           <h3>年金清单</h3>
           <p class="amount">¥9.9 <span>/ PDF</span></p>
           <ul>
@@ -101,6 +155,7 @@
           <a class="btn btn-outline" href="#buy">即将上架</a>
         </article>
         <article class="price-card">
+          <p class="price-tag price-tag--muted">图包</p>
           <h3>壁纸图包</h3>
           <p class="amount">¥4.9+ <span>/ 包</span></p>
           <ul>
@@ -115,9 +170,10 @@
 
     <section class="wrap section" id="buy">
       <div class="cta-block">
+        <p class="pill pill--on-soft">Coming soon</p>
         <h2>购买通道即将开放</h2>
         <p>开通后这里一键下单。<br />临时可私信萝卜说「要环绕」。</p>
-        <a class="btn btn-outline" href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">在 X 找萝卜</a>
+        <a class="btn btn-fill" href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">在 X 找萝卜</a>
       </div>
     </section>
 
@@ -130,8 +186,10 @@
   </main>
 
   <footer class="wrap footer">
-    <p class="footer-brand">污兔酱 × 萝卜</p>
-    <p>© 2026 污兔福利小站</p>
+    <div class="footer-inner">
+      <p class="footer-brand">污兔酱 × 萝卜</p>
+      <p>© 2026 污兔福利小站</p>
+    </div>
   </footer>
 
   <script src="main.js"></script>
