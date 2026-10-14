@@ -3,20 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="污兔360 — 一张自拍，变成约 3 秒的 360° 环绕。污兔酱 × 萝卜。" />
+  <meta name="description" content="污兔福利小站 — 一张自拍，变成约 3 秒的 360° 环绕。污兔酱 × 萝卜。" />
   <meta name="theme-color" content="#faf7f2" />
   <meta property="og:title" content="污兔福利小站" />
-  <meta property="og:description" content="一张照片 → 约 3 秒 360° 环绕 MP4。污兔酱 × 萝卜。" />
+  <meta property="og:description" content="一张照片 → 约 3 秒 360° 环绕。污兔酱 × 萝卜。" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/hero-orbit.jpg" />
+  <meta property="og:image" content="demo/poster.jpg" />
   <title>污兔福利小站</title>
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <div class="ambient" aria-hidden="true"></div>
+
   <header class="nav">
     <div class="wrap nav-inner">
       <a class="logo" href="#top">污兔福利小站</a>
@@ -29,15 +31,14 @@
   </header>
 
   <main id="top">
-    <!-- Hero -->
     <section class="hero wrap">
       <div class="hero-copy">
         <p class="eyebrow">污兔酱 × 萝卜</p>
-        <h1>一张自拍<br />变成 360° 环绕</h1>
-        <p class="lead">上传 · 付款 · 下载 MP4。<br />适合发动态、做主图、留作小礼物。</p>
+        <h1>一张自拍<br />变成 360°</h1>
+        <p class="lead">上传 · 付款 · 下载。<br />约 3 秒可循环环绕。</p>
         <div class="cta-row">
           <a class="btn btn-fill" href="#buy">¥7–9.9 试试</a>
-          <a class="btn btn-text" href="#demo">观看 Demo</a>
+          <a class="btn btn-ghost" href="#demo">看 Demo</a>
         </div>
       </div>
       <figure class="demo" id="demo">
@@ -54,92 +55,83 @@
       </figure>
     </section>
 
-    <!-- How -->
     <section class="wrap section" id="how">
-      <h2 class="section-label">三步</h2>
+      <p class="section-label">三步</p>
       <ol class="steps">
         <li>
           <span class="n">01</span>
-          <div>
-            <h3>上传照片</h3>
-            <p>自拍、半身或全身。光线清楚会更好看。</p>
-          </div>
+          <h3>上传</h3>
+          <p>自拍即可，光线清楚更好看。</p>
         </li>
         <li>
           <span class="n">02</span>
-          <div>
-            <h3>付一小笔</h3>
-            <p>¥7–9.9。付款后开始出片。</p>
-          </div>
+          <h3>付款</h3>
+          <p>¥7–9.9，付完开始出片。</p>
         </li>
         <li>
           <span class="n">03</span>
-          <div>
-            <h3>下载 MP4</h3>
-            <p>拿到可循环播放的 360° 小视频。</p>
-          </div>
+          <h3>下载</h3>
+          <p>拿到可循环的 360° MP4。</p>
         </li>
       </ol>
     </section>
 
-    <!-- Pricing -->
     <section class="wrap section" id="pricing">
-      <h2 class="section-label">价格</h2>
+      <p class="section-label">价格</p>
       <div class="price-grid">
         <article class="price-card price-card--main">
           <p class="price-tag">主推</p>
           <h3>360° 环绕</h3>
           <p class="amount">¥7–9.9 <span>/ 张</span></p>
           <ul>
-            <li>单图 → 约 3 秒 orbit MP4</li>
+            <li>单图 → 约 3 秒 orbit</li>
             <li>可下载、可发动态</li>
-            <li>AI 生成，效果因图而异</li>
+            <li>效果因图而异</li>
           </ul>
           <a class="btn btn-fill" href="#buy">选这个</a>
         </article>
         <article class="price-card">
-          <h3>年金自查清单</h3>
+          <h3>年金清单</h3>
           <p class="amount">¥9.9 <span>/ PDF</span></p>
           <ul>
-            <li>脱退一时金自学勾选</li>
-            <li>步骤 · 官方链接 · 防骗</li>
-            <li>不代办 · 不承诺金额</li>
+            <li>脱退一时金自查</li>
+            <li>步骤 · 链接 · 防骗</li>
+            <li>不代办 · 不承诺</li>
           </ul>
           <a class="btn btn-outline" href="#buy">即将上架</a>
         </article>
         <article class="price-card">
-          <h3>壁纸 / 图包</h3>
+          <h3>壁纸图包</h3>
           <p class="amount">¥4.9+ <span>/ 包</span></p>
           <ul>
-            <li>手机 / 电脑数字壁纸</li>
-            <li>付款下载 · 无实体</li>
-            <li>Coming soon</li>
+            <li>手机 / 电脑壁纸</li>
+            <li>付款即下载</li>
+            <li>敬请期待</li>
           </ul>
           <a class="btn btn-outline" href="#buy">敬请期待</a>
         </article>
       </div>
     </section>
 
-    <!-- Soft CTA -->
     <section class="wrap section" id="buy">
       <div class="cta-block">
         <h2>购买通道即将开放</h2>
-        <p>面包多与自助收银开通后，这里会变成一键下单。<br />临时可私信萝卜说「要环绕」或「要清单」。</p>
+        <p>开通后这里一键下单。<br />临时可私信萝卜说「要环绕」。</p>
         <a class="btn btn-outline" href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">在 X 找萝卜</a>
       </div>
     </section>
 
-    <!-- Disclaimer -->
-    <section class="wrap section section--tight" id="disclaimer">
-      <div class="disclaimer">
-        <p>本站售卖 AI 数字内容（环绕视频、PDF、壁纸），效果因原图而异。不提供专业代办，不经手退款，不承诺年金金额。公开页不收集证件与银行卡；支付与实名仅在合规平台完成。壁纸为数字下载，默认个人使用。</p>
-      </div>
+    <section class="wrap section section--tight">
+      <p class="disclaimer">
+        AI 数字内容，效果因原图而异。不代办、不经手退款、不承诺金额。
+        公开页不收集证件；支付仅在合规平台完成。壁纸默认个人使用。
+      </p>
     </section>
   </main>
 
   <footer class="wrap footer">
     <p class="footer-brand">污兔酱 × 萝卜</p>
-    <p>© 2026 污兔360</p>
+    <p>© 2026 污兔福利小站</p>
   </footer>
 
   <script src="main.js"></script>
