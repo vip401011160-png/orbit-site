@@ -16,20 +16,20 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="has-dock">
+<body class="has-dock" data-cat="orbit">
   <div class="ambient" aria-hidden="true"></div>
   <div class="grain" aria-hidden="true"></div>
 
   <header class="nav">
     <div class="wrap nav-inner">
-      <a class="logo" href="#top">
+      <a class="logo" href="#top" data-cat-link="orbit">
         <span class="logo-mark" aria-hidden="true"></span>
         <span>污兔酱的小窝</span>
       </a>
       <nav class="nav-links" aria-label="页面导航">
-        <a href="#how">流程</a>
-        <a href="#pricing">价格</a>
-        <a class="nav-cta" href="#buy">上传下单</a>
+        <a href="#orbit" data-cat-link="orbit">环绕</a>
+        <a href="#shop" data-cat-link="shop">资料</a>
+        <a class="nav-cta" id="nav-cta" href="#buy" data-cat-link="orbit">上传下单</a>
       </nav>
     </div>
   </header>
@@ -43,8 +43,8 @@
         <h1>一张自拍<br /><em>变成 360°</em></h1>
         <p class="lead">选一张照片，付完看着进度条走完，成片直接下载——发动态、当头像物料都好看。</p>
         <div class="cta-row">
-          <a class="btn btn-fill" href="#buy">上传照片 · ¥9.9</a>
-          <a class="btn btn-ghost" href="#demo">
+          <a class="btn btn-fill" href="#buy" data-cat-link="orbit">上传照片 · ¥9.9</a>
+          <a class="btn btn-ghost" href="#demo" data-cat-link="orbit">
             <span class="play-dot" aria-hidden="true"></span>
             看 Demo
           </a>
@@ -81,207 +81,311 @@
       </div>
     </section>
 
-    <section class="strip wrap" aria-label="亮点">
-      <div class="strip-card">
-        <strong>轻量</strong>
-        <p>自拍就能做，不用专业棚拍</p>
+    <!-- Sticky category chips -->
+    <div class="cat-bar" id="cat-bar" role="tablist" aria-label="项目分类">
+      <div class="wrap cat-bar-inner">
+        <button type="button" class="cat-chip is-active" role="tab" aria-selected="true" data-cat="orbit" id="chip-orbit">环绕短片</button>
+        <button type="button" class="cat-chip" role="tab" aria-selected="false" data-cat="shop" id="chip-shop">电子资料</button>
+        <button type="button" class="cat-chip is-soon" role="tab" aria-selected="false" aria-disabled="true" disabled title="即将上架">壁纸 · 即将</button>
       </div>
-      <div class="strip-card">
-        <strong>好看</strong>
-        <p>环绕镜头感，适合发动态</p>
-      </div>
-      <div class="strip-card">
-        <strong>省心</strong>
-        <p>先付再出片，好了直接下</p>
-      </div>
-    </section>
+    </div>
 
-    <section class="wrap section" id="how">
-      <div class="section-head">
-        <p class="section-label">怎么用</p>
-        <h2>三步到手</h2>
-        <p class="section-sub">步骤很少，把时间留给成片本身。</p>
-      </div>
-      <ol class="steps">
-        <li class="step-card">
-          <span class="n">01</span>
-          <div class="step-icon" aria-hidden="true">↑</div>
-          <h3>上传照片</h3>
-          <p>选一张光线清楚、主体居中的自拍或半身照。</p>
-        </li>
-        <li class="step-card">
-          <span class="n">02</span>
-          <div class="step-icon" aria-hidden="true">◎</div>
-          <h3>支付并生成</h3>
-          <p>¥9.9 走正规收银台；付完进度条推进，环绕成片在网页里生成。</p>
-        </li>
-        <li class="step-card">
-          <span class="n">03</span>
-          <div class="step-icon" aria-hidden="true">↓</div>
-          <h3>网页直接下载</h3>
-          <p>完成后在本页预览，一键下载 MP4，随时发动态。</p>
-        </li>
-      </ol>
-    </section>
-
-    <section class="wrap section" id="pricing">
-      <div class="section-head">
-        <p class="section-label">怎么选</p>
-        <h2>先选你需要的</h2>
-        <p class="section-sub">主推环绕短片：网页先付再出片，成片直接下载。</p>
-      </div>
-      <div class="price-grid">
-        <article class="price-card price-card--main">
+    <!-- Category entry cards (compact) -->
+    <section class="wrap section section--tight cat-entries" id="pricing" aria-label="选你需要的">
+      <div class="price-grid price-grid--cats">
+        <button type="button" class="price-card price-card--main price-card--btn" data-cat-link="orbit" data-cat="orbit">
           <p class="price-tag">主推 · 先付再出片</p>
-          <h3>污兔360 单次环绕</h3>
+          <h3>污兔360 环绕短片</h3>
           <p class="amount">¥9.9 <span>/ 张</span></p>
           <ul>
             <li>一张自拍 → 约 3 秒 orbit MP4</li>
-            <li>默认可循环，带水印「污兔360」</li>
-            <li>明显坏片可小改一次</li>
+            <li>正规收银台 · 付完自动出片</li>
           </ul>
-          <a class="btn btn-fill" href="#buy">支付 ¥9.9 生成</a>
-        </article>
-        <article class="price-card">
+          <span class="btn btn-fill">去上传 · ¥9.9</span>
+        </button>
+        <button type="button" class="price-card price-card--btn" data-cat-link="shop" data-cat="shop">
           <p class="price-tag price-tag--muted">资料</p>
-          <h3>年金清单</h3>
-          <p class="amount">¥9.9 <span>/ PDF</span></p>
+          <h3>电子资料区</h3>
+          <p class="amount">¥9.9+ <span>/ PDF</span></p>
           <ul>
-            <li>脱退一时金自查</li>
-            <li>步骤 · 链接 · 防骗</li>
-            <li>不代办 · 不承诺</li>
+            <li>年金自查 · 搞钱挑战清单</li>
+            <li>先付再下载 · 不承诺收入</li>
           </ul>
-          <span class="btn btn-outline btn-disabled" aria-disabled="true">即将上架</span>
-        </article>
-        <article class="price-card">
+          <span class="btn btn-outline">看资料</span>
+        </button>
+        <article class="price-card price-card--soon" aria-disabled="true">
           <p class="price-tag price-tag--muted">图包</p>
           <h3>壁纸图包</h3>
           <p class="amount">¥4.9+ <span>/ 包</span></p>
           <ul>
             <li>手机 / 电脑壁纸</li>
-            <li>付款即下载</li>
             <li>敬请期待</li>
           </ul>
-          <span class="btn btn-outline btn-disabled" aria-disabled="true">敬请期待</span>
+          <span class="btn btn-outline btn-disabled" aria-disabled="true">即将上架</span>
         </article>
       </div>
     </section>
 
-    <section class="wrap section" id="buy">
-      <div class="buy-block">
-        <div class="buy-head">
-          <p class="pill pill--on-soft">¥9.9 · 先付再出片</p>
-          <h2>上传照片 · 生成 360°</h2>
-          <p class="buy-lead">选一张清晰自拍，支付 ¥9.9 后看进度条；完成后在本页预览并下载 MP4。收银台为正规支付宝/微信，页面不出现个人收款码。</p>
+    <!-- ============ ORBIT PANEL ============ -->
+    <div class="cat-panel" id="panel-orbit" data-cat-panel="orbit" role="tabpanel" aria-labelledby="chip-orbit">
+      <section class="strip wrap" aria-label="亮点">
+        <div class="strip-card">
+          <strong>轻量</strong>
+          <p>自拍就能做，不用专业棚拍</p>
         </div>
+        <div class="strip-card">
+          <strong>好看</strong>
+          <p>环绕镜头感，适合发动态</p>
+        </div>
+        <div class="strip-card">
+          <strong>省心</strong>
+          <p>先付再出片，好了直接下</p>
+        </div>
+      </section>
 
-        <!-- Stage: pick -->
-        <div class="try-panel" id="try-pick" data-stage="pick">
-          <div class="try-grid">
-            <label class="try-drop" id="try-drop" for="try-file">
-              <input type="file" id="try-file" accept="image/jpeg,image/png,image/webp,image/heic,image/*" hidden />
-              <div class="try-drop-inner" id="try-drop-inner">
-                <div class="try-orbit-icon" aria-hidden="true">
-                  <span class="try-orbit-ring"></span>
-                  <span class="try-orbit-dot"></span>
+      <section class="wrap section" id="how">
+        <div class="section-head">
+          <p class="section-label">怎么用</p>
+          <h2>三步到手</h2>
+          <p class="section-sub">步骤很少，把时间留给成片本身。</p>
+        </div>
+        <ol class="steps">
+          <li class="step-card">
+            <span class="n">01</span>
+            <div class="step-icon" aria-hidden="true">↑</div>
+            <h3>上传照片</h3>
+            <p>选一张光线清楚、主体居中的自拍或半身照。</p>
+          </li>
+          <li class="step-card">
+            <span class="n">02</span>
+            <div class="step-icon" aria-hidden="true">◎</div>
+            <h3>支付并生成</h3>
+            <p>¥9.9 走正规收银台；付完进度条推进，环绕成片在网页里生成。</p>
+          </li>
+          <li class="step-card">
+            <span class="n">03</span>
+            <div class="step-icon" aria-hidden="true">↓</div>
+            <h3>网页直接下载</h3>
+            <p>完成后在本页预览，一键下载 MP4，随时发动态。</p>
+          </li>
+        </ol>
+      </section>
+
+      <section class="wrap section" id="buy">
+        <div class="buy-block">
+          <div class="buy-head">
+            <p class="pill pill--on-soft">¥9.9 · 先付再出片</p>
+            <h2>上传照片 · 生成 360°</h2>
+            <p class="buy-lead">选一张清晰自拍，点购买后跳转正规收银台；付完自动出片，本页预览并下载 MP4。页面不挂静态收款码。</p>
+          </div>
+
+          <!-- Stage: pick -->
+          <div class="try-panel" id="try-pick" data-stage="pick">
+            <div class="try-grid">
+              <label class="try-drop" id="try-drop" for="try-file">
+                <input type="file" id="try-file" accept="image/jpeg,image/png,image/webp,image/heic,image/*" hidden />
+                <div class="try-drop-inner" id="try-drop-inner">
+                  <div class="try-orbit-icon" aria-hidden="true">
+                    <span class="try-orbit-ring"></span>
+                    <span class="try-orbit-dot"></span>
+                  </div>
+                  <strong>点击或拖入一张照片</strong>
+                  <p>JPG / PNG / WEBP · 建议人脸清晰、主体居中</p>
                 </div>
-                <strong>点击或拖入一张照片</strong>
-                <p>JPG / PNG / WEBP · 建议人脸清晰、主体居中</p>
-              </div>
-              <div class="try-preview is-hidden" id="try-preview">
-                <img id="try-preview-img" alt="已选照片预览" />
-                <button type="button" class="try-change" id="try-change">换一张</button>
-              </div>
-            </label>
+                <div class="try-preview is-hidden" id="try-preview">
+                  <img id="try-preview-img" alt="已选照片预览" />
+                  <button type="button" class="try-change" id="try-change">换一张</button>
+                </div>
+              </label>
 
-            <div class="try-form">
-              <div class="try-form-card">
-                <p class="try-form-price">¥9.9 <span>/ 张</span></p>
-                <p class="try-form-desc">正规收银台 · 付完自动出片</p>
-                <button type="button" class="btn btn-fill try-start" id="try-start" disabled>支付 ¥9.9 并生成</button>
-                <p class="buy-hint">跳转正规收银台付款后自动出片，约需一两分钟。成片可循环，适合发动态。第一次可能多等一会儿（服务会休眠）。</p>
+              <div class="try-form">
+                <div class="try-form-card">
+                  <p class="try-form-price">¥9.9 <span>/ 张</span></p>
+                  <p class="try-form-desc">正规收银台 · 付完自动出片</p>
+                  <button type="button" class="btn btn-fill try-start" id="try-start" disabled>支付 ¥9.9 并生成</button>
+                  <p class="buy-hint">跳转正规收银台付款后自动出片，约需一两分钟。成片可循环，适合发动态。第一次可能多等一会儿（服务会休眠）。</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        <!-- Stage: pay (checkout) -->
-        <div class="try-panel is-hidden" id="try-pay" data-stage="pay" aria-live="polite">
-          <div class="try-pay-card">
-            <div class="try-done-badge">待支付 · ¥9.9</div>
-            <h3>扫码或打开收银台</h3>
-            <p class="try-done-lead" id="try-pay-lead">使用微信 / 支付宝完成支付后，将自动开始生成。</p>
-            <div class="try-pay-qr-wrap" id="try-pay-qr-wrap">
-              <div class="try-pay-qr-frame">
-                <img id="try-pay-qr" class="try-pay-qr" alt="支付二维码" />
+          <!-- Stage: pay (checkout) — QR only after order, optional secondary -->
+          <div class="try-panel is-hidden" id="try-pay" data-stage="pay" aria-live="polite">
+            <div class="try-pay-card">
+              <div class="try-done-badge">待支付 · ¥9.9</div>
+              <h3>打开收银台完成支付</h3>
+              <p class="try-done-lead" id="try-pay-lead">请点「打开收银台」完成支付；微信内请勿长按页内二维码。</p>
+              <div class="try-pay-qr-wrap is-hidden" id="try-pay-qr-wrap">
+                <div class="try-pay-qr-frame">
+                  <img id="try-pay-qr" class="try-pay-qr is-hidden" alt="支付二维码（电脑端可选）" />
+                </div>
+                <p class="try-pay-qr-hint">电脑端也可扫码（微信内不展示）</p>
+              </div>
+              <div class="buy-actions try-done-actions">
+                <a class="btn btn-fill" id="try-pay-open" href="#" target="_self" rel="noopener noreferrer">打开收银台</a>
+                <button type="button" class="btn btn-ghost" id="try-pay-cancel">取消</button>
+              </div>
+              <p class="buy-hint try-pay-waiting" id="try-pay-status">等待支付确认…</p>
+            </div>
+          </div>
+
+          <!-- Stage: loading -->
+          <div class="try-panel is-hidden" id="try-loading" data-stage="loading" aria-live="polite">
+            <div class="try-theater">
+              <div class="try-theater-visual">
+                <div class="try-spinner" aria-hidden="true">
+                  <span class="try-spinner-ring"></span>
+                  <span class="try-spinner-ring try-spinner-ring--2"></span>
+                  <img id="try-loading-thumb" class="try-loading-thumb" alt="" />
+                </div>
+                <p class="try-stage-label" id="try-stage-label">正在锁定主体…</p>
+                <div class="try-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="try-progress">
+                  <div class="try-progress-bar" id="try-progress-bar"></div>
+                </div>
+                <p class="try-pct"><span id="try-pct">0</span>%</p>
+                <p class="try-loading-hint">请保持页面打开，大约一两分钟</p>
               </div>
             </div>
-            <div class="buy-actions try-done-actions">
-              <a class="btn btn-fill" id="try-pay-open" href="#" target="_blank" rel="noopener noreferrer">打开收银台</a>
-              <button type="button" class="btn btn-ghost" id="try-pay-cancel">取消</button>
-            </div>
-            <p class="buy-hint try-pay-waiting" id="try-pay-status">等待支付确认…</p>
           </div>
-        </div>
 
-        <!-- Stage: loading -->
-        <div class="try-panel is-hidden" id="try-loading" data-stage="loading" aria-live="polite">
-          <div class="try-theater">
-            <div class="try-theater-visual">
-              <div class="try-spinner" aria-hidden="true">
-                <span class="try-spinner-ring"></span>
-                <span class="try-spinner-ring try-spinner-ring--2"></span>
-                <img id="try-loading-thumb" class="try-loading-thumb" alt="" />
+          <!-- Stage: done / download -->
+          <div class="try-panel is-hidden" id="try-done" data-stage="done" aria-live="polite">
+            <div class="try-done-card">
+              <div class="try-done-badge">生成完成</div>
+              <h3>你的 360° 环绕好了</h3>
+              <p class="try-done-lead">可以预览，也可以直接下载 MP4。</p>
+              <div class="try-done-video-wrap">
+                <video id="try-done-video" class="try-done-video" controls playsinline loop muted autoplay></video>
               </div>
-              <p class="try-stage-label" id="try-stage-label">正在锁定主体…</p>
-              <div class="try-progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="try-progress">
-                <div class="try-progress-bar" id="try-progress-bar"></div>
+              <div class="buy-actions try-done-actions">
+                <a class="btn btn-fill btn-download" id="try-download" href="#" download>
+                  <span class="btn-download-icon" aria-hidden="true">↓</span>
+                  下载 MP4
+                </a>
+                <button type="button" class="btn btn-ghost" id="try-again">再做一张</button>
               </div>
-              <p class="try-pct"><span id="try-pct">0</span>%</p>
-              <p class="try-loading-hint">请保持页面打开，大约一两分钟</p>
+              <p class="buy-hint">遇到问题可找 <a href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">@wutujiang1999</a>。</p>
             </div>
           </div>
-        </div>
 
-        <!-- Stage: done / download -->
-        <div class="try-panel is-hidden" id="try-done" data-stage="done" aria-live="polite">
-          <div class="try-done-card">
-            <div class="try-done-badge">生成完成</div>
-            <h3>你的 360° 环绕好了</h3>
-            <p class="try-done-lead">可以预览，也可以直接下载 MP4。</p>
-            <div class="try-done-video-wrap">
-              <video id="try-done-video" class="try-done-video" controls playsinline loop muted autoplay></video>
-            </div>
-            <div class="buy-actions try-done-actions">
-              <a class="btn btn-fill btn-download" id="try-download" href="#" download>
-                <span class="btn-download-icon" aria-hidden="true">↓</span>
-                下载 MP4
-              </a>
-              <button type="button" class="btn btn-ghost" id="try-again">再做一张</button>
-            </div>
-            <p class="buy-hint">遇到问题可找 <a href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">@wutujiang1999</a>。</p>
-          </div>
-        </div>
-
-        <!-- Stage: fail -->
-        <div class="try-panel is-hidden" id="try-fail" data-stage="fail" aria-live="polite">
-          <div class="try-done-card">
-            <div class="try-done-badge try-done-badge--soft">再试一次</div>
-            <h3>这次没生成成功</h3>
-            <p class="try-done-lead" id="try-fail-msg">换张清晰一点的自拍再试一次吧。若已付款仍失败，私信 @wutujiang1999 并说明情况。</p>
-            <div class="buy-actions try-done-actions">
-              <button type="button" class="btn btn-fill" id="try-retry">重试</button>
-              <button type="button" class="btn btn-ghost" id="try-fail-again">换一张图</button>
+          <!-- Stage: fail -->
+          <div class="try-panel is-hidden" id="try-fail" data-stage="fail" aria-live="polite">
+            <div class="try-done-card">
+              <div class="try-done-badge try-done-badge--soft">再试一次</div>
+              <h3>这次没生成成功</h3>
+              <p class="try-done-lead" id="try-fail-msg">换张清晰一点的自拍再试一次吧。若已付款仍失败，私信 @wutujiang1999 并说明情况。</p>
+              <div class="buy-actions try-done-actions">
+                <button type="button" class="btn btn-fill" id="try-retry">重试</button>
+                <button type="button" class="btn btn-ghost" id="try-fail-again">换一张图</button>
+              </div>
             </div>
           </div>
+
+          <p class="buy-note">
+            AI 效果因原图而异。虚拟定制出片后原则上不退；若成片明显坏掉可小改一次。
+            公开页不收集证件、不展示个人收款码。品牌：污兔酱 × 萝卜。
+            另有 <a href="#shop" data-cat-link="shop">电子资料</a>（年金清单 ¥9.9 · 搞钱挑战 7 日清单 ¥12.9）。
+          </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============ SHOP PANEL ============ -->
+    <div class="cat-panel is-hidden" id="panel-shop" data-cat-panel="shop" role="tabpanel" aria-labelledby="chip-shop" hidden>
+      <section class="wrap section" id="shop">
+        <div class="section-head">
+          <p class="section-label">电子资料</p>
+          <h2>资料区</h2>
+          <p class="section-sub">自学清单与挑战工具包。付完直接下载水印 PDF；不代办、不承诺收入。</p>
         </div>
 
-        <p class="buy-note">
-          AI 效果因原图而异。虚拟定制出片后原则上不退；若成片明显坏掉可小改一次。
-          公开页不收集证件、不展示个人收款码。品牌：污兔酱 × 萝卜。
-        </p>
-      </div>
-    </section>
+        <div class="shop-grid">
+          <article class="shop-card" id="nenkin">
+            <p class="price-tag">PDF · 先付再下载</p>
+            <h3>日本年金脱退一时金 · 回国自查清单</h3>
+            <p class="amount">¥9.9 <span>/ 份</span></p>
+            <p class="shop-story">留学回来自己踩过期限、材料和预扣税的坑，才把官方规则翻成这份勾选表。只卖电子资料，不代办、不经手退款。</p>
+            <ul>
+              <li>能不能申请 · 勾选表</li>
+              <li>寄出前材料清单</li>
+              <li>大白话步骤（含 20.42% 预扣税说明）</li>
+              <li>官方估算公式 + 官方链接</li>
+              <li>防骗红线</li>
+            </ul>
+            <p class="shop-bound">仅自学材料 · 不代办社労士/税理士 · 不经手退款 · 不承诺金额</p>
+            <div id="shop-nenkin-panel" class="shop-pay" data-stage="idle">
+              <button type="button" class="btn btn-fill" id="shop-nenkin-buy">购买 PDF · ¥9.9</button>
+              <div class="shop-pay-checkout is-hidden" id="shop-nenkin-checkout">
+                <p class="shop-pay-lead" id="shop-nenkin-lead">请点「打开收银台」完成支付；微信内请勿长按页内二维码。</p>
+                <div class="shop-pay-qr-wrap is-hidden" id="shop-nenkin-qr-wrap">
+                  <img id="shop-nenkin-qr" class="shop-pay-qr is-hidden" alt="支付二维码（电脑端可选）" />
+                  <p class="try-pay-qr-hint">电脑端也可扫码（微信内不展示）</p>
+                </div>
+                <div class="buy-actions try-done-actions">
+                  <a class="btn btn-fill" id="shop-nenkin-open" href="#" target="_self" rel="noopener noreferrer">打开收银台</a>
+                  <button type="button" class="btn btn-ghost" id="shop-nenkin-cancel">取消</button>
+                </div>
+                <p class="buy-hint" id="shop-nenkin-status">等待支付确认…</p>
+              </div>
+              <div class="shop-pay-done is-hidden" id="shop-nenkin-done">
+                <p class="try-done-badge">已付款</p>
+                <h3>清单已就绪</h3>
+                <p class="try-done-lead">点下方下载水印版 PDF（导流小窝 + X）。</p>
+                <button type="button" class="btn btn-fill" id="shop-nenkin-dl">下载 PDF</button>
+                <p class="buy-hint">同一订单可再点下载。问题私信 <a href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">@wutujiang1999</a>。</p>
+              </div>
+              <div class="shop-pay-fail is-hidden" id="shop-nenkin-fail">
+                <p class="try-done-lead" id="shop-nenkin-fail-msg">创建订单失败，请稍后再试。</p>
+                <button type="button" class="btn btn-ghost" id="shop-nenkin-retry">重试</button>
+              </div>
+            </div>
+            <p class="shop-xsell">也想做环绕短片？去 <a href="#buy" data-cat-link="orbit">污兔360 · ¥9.9</a> 上传一张自拍。</p>
+          </article>
+
+          <article class="shop-card" id="challenge7">
+            <p class="price-tag">PDF · 先付再下载</p>
+            <h3>污兔搞钱挑战 · 7 日可执行清单</h3>
+            <p class="amount">¥12.9 <span>/ 份</span></p>
+            <p class="shop-story">赚钱养我挑战进行中。萝卜把「本周只做一件能收款的事」收成勾选表：日清单、渠道怎么选、合规红线、小窝上架自检。</p>
+            <ul>
+              <li>Day1–7 可勾选行动</li>
+              <li>渠道决策表（小窝 / X / 闲鱼）</li>
+              <li>合规红线（不灰产、不虚假月入）</li>
+              <li>数字品上架自检 + 短话术</li>
+              <li>FAQ（公开只提挑战本金 ¥5000）</li>
+            </ul>
+            <p class="shop-bound">自学材料 · 不承诺收入 · 不教灰产 · 不经手代办退款</p>
+            <div id="shop-challenge7-panel" class="shop-pay" data-stage="idle">
+              <button type="button" class="btn btn-fill" id="shop-challenge7-buy">购买 PDF · ¥12.9</button>
+              <div class="shop-pay-checkout is-hidden" id="shop-challenge7-checkout">
+                <p class="shop-pay-lead" id="shop-challenge7-lead">请点「打开收银台」完成支付；微信内请勿长按页内二维码。</p>
+                <div class="shop-pay-qr-wrap is-hidden" id="shop-challenge7-qr-wrap">
+                  <img id="shop-challenge7-qr" class="shop-pay-qr is-hidden" alt="支付二维码（电脑端可选）" />
+                  <p class="try-pay-qr-hint">电脑端也可扫码（微信内不展示）</p>
+                </div>
+                <div class="buy-actions try-done-actions">
+                  <a class="btn btn-fill" id="shop-challenge7-open" href="#" target="_self" rel="noopener noreferrer">打开收银台</a>
+                  <button type="button" class="btn btn-ghost" id="shop-challenge7-cancel">取消</button>
+                </div>
+                <p class="buy-hint" id="shop-challenge7-status">等待支付确认…</p>
+              </div>
+              <div class="shop-pay-done is-hidden" id="shop-challenge7-done">
+                <p class="try-done-badge">已付款</p>
+                <h3>清单已就绪</h3>
+                <p class="try-done-lead">点下方下载水印版 PDF（导流小窝 + X）。</p>
+                <button type="button" class="btn btn-fill" id="shop-challenge7-dl">下载 PDF</button>
+                <p class="buy-hint">同一订单可再点下载。问题私信 <a href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">@wutujiang1999</a>。</p>
+              </div>
+              <div class="shop-pay-fail is-hidden" id="shop-challenge7-fail">
+                <p class="try-done-lead" id="shop-challenge7-fail-msg">创建订单失败，请稍后再试。</p>
+                <button type="button" class="btn btn-ghost" id="shop-challenge7-retry">重试</button>
+              </div>
+            </div>
+            <p class="shop-xsell">也想试环绕短片？去 <a href="#buy" data-cat-link="orbit">污兔360 · ¥9.9</a>；留学回来查年金 → <a href="#nenkin">年金清单 · ¥9.9</a>。</p>
+          </article>
+        </div>
+      </section>
+    </div>
 
     <section class="wrap section section--tight">
       <p class="disclaimer">
@@ -298,20 +402,21 @@
     </div>
   </footer>
 
-
   <div class="mobile-dock" aria-label="快捷下单">
     <div class="mobile-dock-inner">
       <div class="mobile-dock-copy">
-        <strong>污兔360</strong>
-        <span>¥9.9 · 先付再出片</span>
+        <strong id="dock-title">污兔360</strong>
+        <span id="dock-sub">¥9.9 · 先付再出片</span>
       </div>
-      <a class="btn btn-fill mobile-dock-cta" href="#buy">上传下单</a>
+      <a class="btn btn-fill mobile-dock-cta" id="dock-cta" href="#buy" data-cat-link="orbit">上传下单</a>
     </div>
   </div>
 
   <script src="api-config.js"></script>
   <script src="pay-config.js"></script>
   <script src="pay-draft/pay-flow.js"></script>
+  <script src="cat-nav.js"></script>
+  <script src="shop-pay.js"></script>
   <script src="main.js"></script>
 </body>
 </html>

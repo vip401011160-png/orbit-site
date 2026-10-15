@@ -4,15 +4,40 @@
 (function (global) {
   var PAY_API = (global.ORBIT_PAY_API || "").replace(/\/$/, "");
 
-  function createPayment() {
+  function createPayment(opts) {
     if (!PAY_API) return Promise.reject(new Error("ORBIT_PAY_API not set"));
+    opts = opts || {};
+    var payload = {};
+    if (opts.product) payload.product = opts.product;
+    if (opts.return_url) payload.return_url = opts.return_url;
+    if (opts.attach) payload.attach = opts.attach;
     return fetch(PAY_API + "/api/pay/create", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({}),
+      body: JSON.stringify(payload),
     }).then(function (r) {
       if (!r.ok) return r.text().then(function (t) { throw new Error(t || "create pay failed"); });
       return r.json();
+    });
+  }
+
+  function downloadPaidFile(orderId, token) {
+    if (!PAY_API) return Promise.reject(new Error("ORBIT_PAY_API not set"));
+    return fetch(PAY_API + "/api/orders/" + encodeURIComponent(orderId) + "/download", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ generate_token: token }),
+    }).then(function (r) {
+      if (!r.ok) return r.text().then(function (t) { throw new Error(t || "download failed"); });
+      var cd = r.headers.get("content-disposition") || "";
+      var name = "污兔酱-电子资料.pdf";
+      var m = /filename\*=UTF-8''([^;]+)|filename="?([^";]+)"?/i.exec(cd);
+      if (m) {
+        try { name = decodeURIComponent(m[1] || m[2]); } catch (e) { name = m[1] || m[2]; }
+      }
+      return r.blob().then(function (blob) {
+        return { blob: blob, filename: name };
+      });
     });
   }
 
@@ -74,6 +99,7 @@
   global.WutuPay = {
     createPayment: createPayment,
     pollOrder: pollOrder,
+    downloadPaidFile: downloadPaidFile,
     startPayThenReturn: startPayThenReturn,
     resumeAfterReturn: resumeAfterReturn,
   };
