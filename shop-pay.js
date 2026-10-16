@@ -37,8 +37,28 @@
     );
   }
 
+  function isHttpUrl(u) {
+    return typeof u === "string" && /^https?:\/\//i.test(u);
+  }
+
+  /** Never leave 「打开收银台」 as href="#" — that clears hash and looks like「回主页」. */
+  function disarmCashierOpen(anchor) {
+    if (!anchor) return;
+    anchor.setAttribute("href", "javascript:void(0)");
+    anchor.setAttribute("target", "_self");
+    anchor.removeAttribute("rel");
+    anchor.onclick = function (ev) {
+      ev.preventDefault();
+      return false;
+    };
+  }
+
   function wireCashierOpen(anchor, payUrl, preferSameTab) {
-    if (!anchor || !payUrl) return;
+    if (!anchor) return;
+    if (!isHttpUrl(payUrl)) {
+      disarmCashierOpen(anchor);
+      return;
+    }
     anchor.href = payUrl;
     if (preferSameTab) {
       anchor.setAttribute("target", "_self");
@@ -48,6 +68,11 @@
       anchor.setAttribute("rel", "noopener noreferrer");
     }
     anchor.onclick = function (ev) {
+      /* Always block bare # / void — only real http(s) may navigate */
+      if (!isHttpUrl(payUrl)) {
+        ev.preventDefault();
+        return false;
+      }
       if (!preferSameTab) return;
       ev.preventDefault();
       try {
@@ -195,8 +220,7 @@
         if (res.pay_url) {
           wireCashierOpen(state.openBtn, res.pay_url, sameTab);
         } else {
-          state.openBtn.removeAttribute("href");
-          state.openBtn.onclick = null;
+          disarmCashierOpen(state.openBtn);
         }
       }
       if (state.statusEl) {
@@ -253,6 +277,7 @@
       state.pollAbort = false;
       state.buyBtn.disabled = true;
       if (state.statusEl) state.statusEl.textContent = "正在创建订单…";
+      disarmCashierOpen(state.openBtn);
       showStage("pay");
       if (state.qr) {
         state.qr.removeAttribute("src");
@@ -312,6 +337,7 @@
     if (state.cancelBtn) state.cancelBtn.addEventListener("click", resetIdle);
     if (state.retryBtn) state.retryBtn.addEventListener("click", startBuy);
     if (state.dlBtn) state.dlBtn.addEventListener("click", doDownload);
+    disarmCashierOpen(state.openBtn);
 
     state.resumeWithOrder = resumeWithOrder;
     state.showFail = showFail;

@@ -292,6 +292,60 @@
       });
   }
 
+  function isWeChatUA() {
+    return /MicroMessenger/i.test(navigator.userAgent || "");
+  }
+
+  function isMobileUA() {
+    return /Android|iPhone|iPod|iPad|Mobile|MicroMessenger/i.test(navigator.userAgent || "");
+  }
+
+  /** Wire「打开收银台」: WeChat/mobile must same-tab (target=_blank often no-ops). */
+  function isHttpUrl(u) {
+    return typeof u === "string" && /^https?:\/\//i.test(u);
+  }
+  function disarmCashierOpen(anchor) {
+    if (!anchor) return;
+    anchor.setAttribute("href", "javascript:void(0)");
+    anchor.setAttribute("target", "_self");
+    anchor.removeAttribute("rel");
+    anchor.classList.add("is-disabled");
+    anchor.onclick = function (ev) {
+      ev.preventDefault();
+      return false;
+    };
+  }
+  function wireCashierOpen(anchor, payUrl, preferSameTab) {
+    if (!anchor) return;
+    if (!isHttpUrl(payUrl)) {
+      disarmCashierOpen(anchor);
+      return;
+    }
+    anchor.href = payUrl;
+    anchor.classList.remove("is-disabled");
+    if (preferSameTab) {
+      anchor.setAttribute("target", "_self");
+      anchor.removeAttribute("rel");
+    } else {
+      anchor.setAttribute("target", "_blank");
+      anchor.setAttribute("rel", "noopener noreferrer");
+    }
+    anchor.onclick = function (ev) {
+      if (!isHttpUrl(payUrl)) {
+        ev.preventDefault();
+        return false;
+      }
+      if (!preferSameTab) return; // let browser open new tab
+      ev.preventDefault();
+      try {
+        window.location.assign(payUrl);
+      } catch (e) {
+        window.location.href = payUrl;
+      }
+      return false;
+    };
+  }
+
   function showPayCheckout(res) {
     pendingOrderId = res.order_id;
     pollAbort = false;
@@ -299,33 +353,71 @@
       sessionStorage.setItem("wutu_pending_order", res.order_id);
     } catch (e) {}
 
-    if (payQr && res.url_qrcode) {
+    var inWeChat = isWeChatUA();
+    var onMobile = isMobileUA();
+    // WeChat long-press QR is rejected by merchant; hide QR in WeChat + mobile.
+    // Desktop non-WeChat may show QR as optional secondary.
+    var showQr = !inWeChat && !onMobile && !!(res.url_qrcode);
+    var payQrWrap = document.getElementById("try-pay-qr-wrap");
+    if (showQr && payQr) {
       payQr.src = res.url_qrcode;
       payQr.classList.remove("is-hidden");
-    } else if (payQr) {
-      payQr.removeAttribute("src");
-      payQr.classList.add("is-hidden");
+      if (payQrWrap) payQrWrap.classList.remove("is-hidden");
+    } else {
+      if (payQr) {
+        payQr.removeAttribute("src");
+        payQr.classList.add("is-hidden");
+      }
+      if (payQrWrap) payQrWrap.classList.add("is-hidden");
     }
+
+    var sameTab = inWeChat || onMobile;
     if (payOpen) {
       if (res.pay_url) {
-        payOpen.href = res.pay_url;
-        payOpen.classList.remove("is-disabled");
+        wireCashierOpen(payOpen, res.pay_url, sameTab);
       } else {
-        payOpen.removeAttribute("href");
+        disarmCashierOpen(payOpen);
       }
     }
-    if (payStatus) payStatus.textContent = "等待支付确认…（请勿关闭本页）";
+
+    if (payStatus) {
+      payStatus.textContent = sameTab
+        ? "正在打开收银台…若未跳转请点「打开收银台」"
+        : "等待支付确认…（请勿关闭本页）";
+    }
     if (payLead) {
-      payLead.textContent =
-        "使用微信 / 支付宝完成 ¥" + PRICE + " 支付后，将自动开始生成。收银台为正规通道，页面不展示个人收款码。";
+      if (inWeChat) {
+        payLead.textContent =
+          "请点「打开收银台」完成支付（同页跳转）。微信内请勿长按页内二维码——本商户不支持长按识别支付。付完回站后自动出片。";
+      } else if (onMobile) {
+        payLead.textContent =
+          "请点「打开收银台」用微信 / 支付宝完成 ¥" + PRICE + " 支付；付完回站后自动出片。";
+      } else {
+        payLead.textContent =
+          "点「打开收银台」完成 ¥" + PRICE + " 支付后将自动开始生成。也可扫下方二维码（仅电脑端可选）。";
+      }
     }
     showStage("pay");
+
+    // Auto-open cashier: WeChat/mobile same-tab; desktop may open new tab once.
+    if (res.pay_url) {
+      if (sameTab) {
+        setTimeout(function () {
+          try {
+            window.location.assign(res.pay_url);
+          } catch (e) {
+            window.location.href = res.pay_url;
+          }
+        }, 80);
+      }
+    }
 
     if (!window.WutuPay || !window.WutuPay.pollOrder) {
       showFail("支付组件未加载，请刷新页面。");
       return;
     }
 
+    // Desktop keeps polling here; WeChat/mobile resume via return_url + tryResumePaidOrder.
     window.WutuPay
       .pollOrder(res.order_id, { maxMs: 300000, everyMs: 2000 })
       .then(function (order) {
@@ -350,11 +442,14 @@
     startBtn.disabled = true;
     pollAbort = false;
     if (payStatus) payStatus.textContent = "正在创建订单…";
+    disarmCashierOpen(payOpen);
     showStage("pay");
+    var payQrWrap0 = document.getElementById("try-pay-qr-wrap");
     if (payQr) {
       payQr.removeAttribute("src");
       payQr.classList.add("is-hidden");
     }
+    if (payQrWrap0) payQrWrap0.classList.add("is-hidden");
 
     window.WutuPay
       .createPayment()
@@ -386,6 +481,9 @@
 
     pendingOrderId = oid;
     pollAbort = false;
+    if (typeof window.setCat === "function") {
+      window.setCat("orbit", { updateHash: false, preserveQuery: true });
+    }
     showStage("pay");
     if (payStatus) payStatus.textContent = "正在确认支付…";
     if (payLead) payLead.textContent = "已从收银台返回，正在确认付款并准备生成。";
@@ -486,6 +584,8 @@
       else goPick();
     });
   }
+
+  disarmCashierOpen(payOpen);
 
   // After DOM ready: resume paid return
   tryResumePaidOrder();
