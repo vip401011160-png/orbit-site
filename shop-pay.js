@@ -1,18 +1,23 @@
-/* 电子资料 · 先付再下载 PDF（product=nenkin | challenge7 …） */
+/* 电子资料 · 先付再下载（product=jpkit | nenkin | jpleave …） */
 (function () {
   if (!window.WutuPay) return;
 
   var RETURN_URL = "https://wutu360.surge.sh/#shop?paid=1";
   var SKUS = [
     {
+      id: "jpkit",
+      priceLabel: "¥19.9",
+      defaultFilename: "污兔酱-离日年金捆绑包-v1-wutu360.surge.sh.zip",
+    },
+    {
       id: "nenkin",
       priceLabel: "¥9.9",
       defaultFilename: "污兔酱-年金自查清单-v1.pdf",
     },
     {
-      id: "challenge7",
+      id: "jpleave",
       priceLabel: "¥12.9",
-      defaultFilename: "污兔酱-搞钱挑战7日清单-v1.pdf",
+      defaultFilename: "污兔酱-日本离境手续全清单-v1.pdf",
     },
   ];
 
@@ -80,6 +85,8 @@
     };
 
     function showStage(name) {
+      var panel = el("shop-" + pid + "-panel");
+      if (panel) panel.setAttribute("data-stage", name);
       state.buyBtn.classList.toggle("is-hidden", name !== "idle");
       if (state.checkout) state.checkout.classList.toggle("is-hidden", name !== "pay");
       if (state.doneEl) state.doneEl.classList.toggle("is-hidden", name !== "done");
@@ -124,14 +131,14 @@
           triggerDownload(res.blob, res.filename);
           if (state.dlBtn) {
             state.dlBtn.disabled = false;
-            state.dlBtn.textContent = "再次下载 PDF";
+            state.dlBtn.textContent = pid === "jpkit" ? "再次下载 ZIP" : "再次下载 PDF";
           }
         })
         .catch(function (err) {
           console.warn(pid + " download", err);
           if (state.dlBtn) {
             state.dlBtn.disabled = false;
-            state.dlBtn.textContent = "下载 PDF";
+            state.dlBtn.textContent = pid === "jpkit" ? "下载 ZIP" : "下载 PDF";
           }
           var msg = (err && err.message) || "";
           if (/未知商品|product|404|下载|not found|资料文件/i.test(msg)) {
@@ -351,7 +358,7 @@
         }
       })
       .catch(function () {
-        var fallback = instances.challenge7 || instances.nenkin;
+        var fallback = instances.nenkin;
         if (fallback) fallback.resumeWithOrder(oid);
       });
   }

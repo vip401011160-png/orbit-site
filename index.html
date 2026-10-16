@@ -108,7 +108,7 @@
           <h3>电子资料区</h3>
           <p class="amount">¥9.9+ <span>/ PDF</span></p>
           <ul>
-            <li>年金自查 · 搞钱挑战清单</li>
+            <li>年金自查 · 离日手续清单 · 陆续上</li>
             <li>先付再下载 · 不承诺收入</li>
           </ul>
           <span class="btn btn-outline">看资料</span>
@@ -284,7 +284,7 @@
           <p class="buy-note">
             AI 效果因原图而异。虚拟定制出片后原则上不退；若成片明显坏掉可小改一次。
             公开页不收集证件、不展示个人收款码。品牌：污兔酱 × 萝卜。
-            另有 <a href="#shop" data-cat-link="shop">电子资料</a>（年金清单 ¥9.9 · 搞钱挑战 7 日清单 ¥12.9）。
+            另有 <a href="#shop" data-cat-link="shop">电子资料</a>（离日+年金捆绑 ¥19.9 · 也可单买）。
           </p>
         </div>
       </section>
@@ -296,10 +296,51 @@
         <div class="section-head">
           <p class="section-label">电子资料</p>
           <h2>资料区</h2>
-          <p class="section-sub">自学清单与挑战工具包。付完直接下载水印 PDF；不代办、不承诺收入。</p>
+          <p class="section-sub">自学清单与避坑资料。可单买或套装；付完直接下载水印 PDF / ZIP；不代办、不承诺收入。</p>
         </div>
 
         <div class="shop-grid">
+          <article class="shop-card shop-card--bundle" id="jpkit">
+            <p class="price-tag">套装 · 先付再下载</p>
+            <h3>离日+年金捆绑包</h3>
+            <p class="amount">¥19.9 <span>/ 套</span></p>
+            <p class="shop-story">离日手续全清单 + 年金自查清单一次拿齐。单买合计 ¥22.8，套装更划算。付完下载 ZIP（内含两份水印 PDF）。只卖电子资料，不代办、不经手退款。</p>
+            <ul>
+              <li>日本离境手续全清单（迁出·保险·银行·手机·公寓·税）</li>
+              <li>年金脱退一时金回国自查清单</li>
+              <li>ZIP 一键下载 · 两份水印 PDF</li>
+              <li>比单买省 ¥2.9</li>
+            </ul>
+            <p class="shop-bound">仅自学勾选 · 非代办 · 不经手退款 · 不承诺金额 · 以官网为准</p>
+            <div id="shop-jpkit-panel" class="shop-pay" data-stage="idle">
+              <button type="button" class="btn btn-fill" id="shop-jpkit-buy">购买套装 · ¥19.9</button>
+              <div class="shop-pay-checkout is-hidden" id="shop-jpkit-checkout">
+                <p class="shop-pay-lead" id="shop-jpkit-lead">请点「打开收银台」完成支付；微信内请勿长按页内二维码。</p>
+                <div class="shop-pay-qr-wrap is-hidden" id="shop-jpkit-qr-wrap">
+                  <img id="shop-jpkit-qr" class="shop-pay-qr is-hidden" alt="支付二维码（电脑端可选）" />
+                  <p class="try-pay-qr-hint">电脑端也可扫码（微信内不展示）</p>
+                </div>
+                <div class="buy-actions try-done-actions">
+                  <a class="btn btn-fill" id="shop-jpkit-open" href="#" target="_self" rel="noopener noreferrer">打开收银台</a>
+                  <button type="button" class="btn btn-ghost" id="shop-jpkit-cancel">取消</button>
+                </div>
+                <p class="buy-hint" id="shop-jpkit-status">等待支付确认…</p>
+              </div>
+              <div class="shop-pay-done is-hidden" id="shop-jpkit-done">
+                <p class="try-done-badge">已付款</p>
+                <h3>套装已就绪</h3>
+                <p class="try-done-lead">点下方下载 ZIP（内含年金 + 离境两份水印 PDF）。</p>
+                <button type="button" class="btn btn-fill" id="shop-jpkit-dl">下载 ZIP</button>
+                <p class="buy-hint">同一订单可再点下载。问题私信 <a href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">@wutujiang1999</a>。</p>
+              </div>
+              <div class="shop-pay-fail is-hidden" id="shop-jpkit-fail">
+                <p class="try-done-lead" id="shop-jpkit-fail-msg">创建订单失败，请稍后再试。</p>
+                <button type="button" class="btn btn-ghost" id="shop-jpkit-retry">重试</button>
+              </div>
+            </div>
+            <p class="shop-xsell">只要一份？单买 <a href="#nenkin">年金 · ¥9.9</a> 或 <a href="#jpleave">离境 · ¥12.9</a>。</p>
+          </article>
+
           <article class="shop-card" id="nenkin">
             <p class="price-tag">PDF · 先付再下载</p>
             <h3>日本年金脱退一时金 · 回国自查清单</h3>
@@ -339,50 +380,51 @@
                 <button type="button" class="btn btn-ghost" id="shop-nenkin-retry">重试</button>
               </div>
             </div>
-            <p class="shop-xsell">也想做环绕短片？去 <a href="#buy" data-cat-link="orbit">污兔360 · ¥9.9</a> 上传一张自拍。</p>
+            <p class="shop-xsell">和离境清单一起更划算：<a href="#jpkit">离日+年金捆绑 · ¥19.9</a>。环绕短片去 <a href="#buy" data-cat-link="orbit">污兔360 · ¥9.9</a>。</p>
           </article>
 
-          <article class="shop-card" id="challenge7">
+          <article class="shop-card" id="jpleave">
             <p class="price-tag">PDF · 先付再下载</p>
-            <h3>污兔搞钱挑战 · 7 日可执行清单</h3>
+            <h3>日本离境手续全清单</h3>
             <p class="amount">¥12.9 <span>/ 份</span></p>
-            <p class="shop-story">赚钱养我挑战进行中。萝卜把「本周只做一件能收款的事」收成勾选表：日清单、渠道怎么选、合规红线、小窝上架自检。</p>
+            <p class="shop-story">离开日本前迁出、保险、银行、手机、公寓、税……按顺序勾完。年金细项另有自查清单。只卖电子资料，不代办、不经手退款。</p>
             <ul>
-              <li>Day1–7 可勾选行动</li>
-              <li>渠道决策表（小窝 / X / 闲鱼）</li>
-              <li>合规红线（不灰产、不虚假月入）</li>
-              <li>数字品上架自检 + 短话术</li>
-              <li>FAQ（公开只提挑战本金 ¥5000）</li>
+              <li>离日前时间轴（T-60 → 回国后）</li>
+              <li>迁出届 · 国保/社保 · 银行 · 手机</li>
+              <li>公寓退租 · 税/纳税管理人入口</li>
+              <li>年金 5 勾入口 + 导流自查 PDF</li>
+              <li>防骗红线（不代办、不经手退款）</li>
             </ul>
-            <p class="shop-bound">自学材料 · 不承诺收入 · 不教灰产 · 不经手代办退款</p>
-            <div id="shop-challenge7-panel" class="shop-pay" data-stage="idle">
-              <button type="button" class="btn btn-fill" id="shop-challenge7-buy">购买 PDF · ¥12.9</button>
-              <div class="shop-pay-checkout is-hidden" id="shop-challenge7-checkout">
-                <p class="shop-pay-lead" id="shop-challenge7-lead">请点「打开收银台」完成支付；微信内请勿长按页内二维码。</p>
-                <div class="shop-pay-qr-wrap is-hidden" id="shop-challenge7-qr-wrap">
-                  <img id="shop-challenge7-qr" class="shop-pay-qr is-hidden" alt="支付二维码（电脑端可选）" />
+            <p class="shop-bound">仅自学勾选 · 非代办 · 不经手退款 · 不承诺金额 · 以官网为准</p>
+            <div id="shop-jpleave-panel" class="shop-pay" data-stage="idle">
+              <button type="button" class="btn btn-fill" id="shop-jpleave-buy">购买 PDF · ¥12.9</button>
+              <div class="shop-pay-checkout is-hidden" id="shop-jpleave-checkout">
+                <p class="shop-pay-lead" id="shop-jpleave-lead">请点「打开收银台」完成支付；微信内请勿长按页内二维码。</p>
+                <div class="shop-pay-qr-wrap is-hidden" id="shop-jpleave-qr-wrap">
+                  <img id="shop-jpleave-qr" class="shop-pay-qr is-hidden" alt="支付二维码（电脑端可选）" />
                   <p class="try-pay-qr-hint">电脑端也可扫码（微信内不展示）</p>
                 </div>
                 <div class="buy-actions try-done-actions">
-                  <a class="btn btn-fill" id="shop-challenge7-open" href="#" target="_self" rel="noopener noreferrer">打开收银台</a>
-                  <button type="button" class="btn btn-ghost" id="shop-challenge7-cancel">取消</button>
+                  <a class="btn btn-fill" id="shop-jpleave-open" href="#" target="_self" rel="noopener noreferrer">打开收银台</a>
+                  <button type="button" class="btn btn-ghost" id="shop-jpleave-cancel">取消</button>
                 </div>
-                <p class="buy-hint" id="shop-challenge7-status">等待支付确认…</p>
+                <p class="buy-hint" id="shop-jpleave-status">等待支付确认…</p>
               </div>
-              <div class="shop-pay-done is-hidden" id="shop-challenge7-done">
+              <div class="shop-pay-done is-hidden" id="shop-jpleave-done">
                 <p class="try-done-badge">已付款</p>
                 <h3>清单已就绪</h3>
                 <p class="try-done-lead">点下方下载水印版 PDF（导流小窝 + X）。</p>
-                <button type="button" class="btn btn-fill" id="shop-challenge7-dl">下载 PDF</button>
+                <button type="button" class="btn btn-fill" id="shop-jpleave-dl">下载 PDF</button>
                 <p class="buy-hint">同一订单可再点下载。问题私信 <a href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">@wutujiang1999</a>。</p>
               </div>
-              <div class="shop-pay-fail is-hidden" id="shop-challenge7-fail">
-                <p class="try-done-lead" id="shop-challenge7-fail-msg">创建订单失败，请稍后再试。</p>
-                <button type="button" class="btn btn-ghost" id="shop-challenge7-retry">重试</button>
+              <div class="shop-pay-fail is-hidden" id="shop-jpleave-fail">
+                <p class="try-done-lead" id="shop-jpleave-fail-msg">创建订单失败，请稍后再试。</p>
+                <button type="button" class="btn btn-ghost" id="shop-jpleave-retry">重试</button>
               </div>
             </div>
-            <p class="shop-xsell">也想试环绕短片？去 <a href="#buy" data-cat-link="orbit">污兔360 · ¥9.9</a>；留学回来查年金 → <a href="#nenkin">年金清单 · ¥9.9</a>。</p>
+            <p class="shop-xsell">和年金一起更划算：<a href="#jpkit">离日+年金捆绑 · ¥19.9</a>。单买年金 <a href="#nenkin">¥9.9</a>。</p>
           </article>
+
         </div>
       </section>
     </div>
