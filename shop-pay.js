@@ -1,4 +1,4 @@
-/* 电子资料 / 图包 先付再下载（product=xhandbook | wallpaper1 | jpkit | nenkin | jpleave …） */
+/* 电子资料 / 图包 先付再下载（product=xhandbook | wallpaper2 | wallpaper1 | jpkit | nenkin | jpleave …） */
 (function () {
   if (!window.WutuPay) return;
 
@@ -9,6 +9,12 @@
       priceLabel: "¥9.9",
       defaultFilename: "污兔酱-发帖节奏小本子-v1.pdf",
       fileKind: "pdf",
+    },
+    {
+      id: "wallpaper2",
+      priceLabel: "¥9.9",
+      defaultFilename: "污兔酱-兔兔壁纸-vol2-写真.zip",
+      fileKind: "zip",
     },
     {
       id: "wallpaper1",

@@ -85,7 +85,7 @@
       <div class="wrap cat-bar-inner">
         <button type="button" class="cat-chip is-active" role="tab" aria-selected="true" data-cat="orbit" id="chip-orbit">环绕短片</button>
         <button type="button" class="cat-chip" role="tab" aria-selected="false" data-cat="shop" id="chip-shop">电子资料</button>
-        <button type="button" class="cat-chip" role="tab" aria-selected="false" data-cat="shop" data-scroll-id="wallpaper1" id="chip-wallpaper">壁纸</button>
+        <button type="button" class="cat-chip" role="tab" aria-selected="false" data-cat="shop" data-scroll-id="wallpaper2" id="chip-wallpaper">壁纸</button>
       </div>
     </div>
 
@@ -111,12 +111,12 @@
           </ul>
           <span class="btn btn-outline">看资料</span>
         </button>
-        <button type="button" class="price-card price-card--btn" data-cat-link="shop" data-cat="shop" data-scroll-id="wallpaper1">
-          <p class="price-tag price-tag--muted">图包</p>
-          <h3>兔兔壁纸 vol.1</h3>
-          <p class="amount">¥6.9 <span>/ 包</span></p>
+        <button type="button" class="price-card price-card--btn" data-cat-link="shop" data-cat="shop" data-scroll-id="wallpaper2">
+          <p class="price-tag price-tag--muted">写真图包</p>
+          <h3>兔兔壁纸 vol.2</h3>
+          <p class="amount">¥9.9 <span>/ 包</span></p>
           <ul>
-            <li>8 张 9:16 手机壁纸</li>
+            <li>8 张真人 9:16 壁纸</li>
             <li>付完下载 ZIP</li>
           </ul>
           <span class="btn btn-outline">去购买</span>
@@ -328,21 +328,60 @@
                 <button type="button" class="btn btn-ghost" id="shop-xhandbook-retry">重试</button>
               </div>
             </div>
-            <p class="shop-xsell">还想要壁纸？看 <a href="#wallpaper1">兔兔壁纸 vol.1 ¥6.9</a>。</p>
+            <p class="shop-xsell">还想要壁纸？看 <a href="#wallpaper2">兔兔壁纸 vol.2 写真 ¥9.9</a>。</p>
+          </article>
+
+                    <article class="shop-card" id="wallpaper2">
+            <p class="price-tag">写真 ZIP 先付再下载</p>
+            <h3>兔兔壁纸 vol.2 写真</h3>
+            <p class="amount">¥9.9 <span>/ 包</span></p>
+            <p class="shop-story">8 张真人竖版手机壁纸，付完下载 ZIP。默认个人使用。</p>
+            <ul>
+              <li>8 张 9:16 写真壁纸</li>
+              <li>ZIP 一键下载</li>
+            </ul>
+            <p class="shop-bound">默认个人使用，转载请注明污兔酱的小窝</p>
+            <div id="shop-wallpaper2-panel" class="shop-pay" data-stage="idle">
+              <button type="button" class="btn btn-fill" id="shop-wallpaper2-buy">购买 ZIP ¥9.9</button>
+              <div class="shop-pay-checkout is-hidden" id="shop-wallpaper2-checkout">
+                <p class="shop-pay-lead" id="shop-wallpaper2-lead">请点「打开收银台」完成支付。微信内请勿长按页内二维码。</p>
+                <div class="shop-pay-qr-wrap is-hidden" id="shop-wallpaper2-qr-wrap">
+                  <img id="shop-wallpaper2-qr" class="shop-pay-qr is-hidden" alt="支付二维码（电脑端可选）" />
+                  <p class="try-pay-qr-hint">电脑端也可扫码（微信内不展示）</p>
+                </div>
+                <div class="buy-actions try-done-actions">
+                  <a class="btn btn-fill" id="shop-wallpaper2-open" href="javascript:void(0)" target="_self" rel="noopener noreferrer">打开收银台</a>
+                  <button type="button" class="btn btn-ghost" id="shop-wallpaper2-cancel">取消</button>
+                </div>
+                <p class="buy-hint" id="shop-wallpaper2-status">等待支付确认…</p>
+              </div>
+              <div class="shop-pay-done is-hidden" id="shop-wallpaper2-done">
+                <p class="try-done-badge">已付款</p>
+                <h3>写真壁纸已就绪</h3>
+                <p class="try-done-lead">点下方下载 ZIP。</p>
+                <button type="button" class="btn btn-fill" id="shop-wallpaper2-dl">下载 ZIP</button>
+                <p class="buy-hint">同一订单可再点下载。问题私信 <a href="https://x.com/wutujiang1999" target="_blank" rel="noopener noreferrer">@wutujiang1999</a>。</p>
+              </div>
+              <div class="shop-pay-fail is-hidden" id="shop-wallpaper2-fail">
+                <p class="try-done-lead" id="shop-wallpaper2-fail-msg">创建订单失败，请稍后再试。</p>
+                <button type="button" class="btn btn-ghost" id="shop-wallpaper2-retry">重试</button>
+              </div>
+            </div>
+            <p class="shop-xsell">也想要插画款？看 <a href="#wallpaper1">兔兔壁纸 vol.1 ¥6.9</a>。</p>
           </article>
 
           <article class="shop-card" id="wallpaper1">
-            <p class="price-tag">ZIP 先付再下载</p>
+            <p class="price-tag">插画·旧款</p>
             <h3>兔兔壁纸 vol.1</h3>
             <p class="amount">¥6.9 <span>/ 包</span></p>
-            <p class="shop-story">8 张 9:16 手机壁纸，付完下载 ZIP。默认个人使用。</p>
+            <p class="shop-story">8 张插画风 9:16 壁纸。想看真人写真请选上方 vol.2。</p>
             <ul>
-              <li>8 张竖版壁纸</li>
+              <li>8 张竖版插画壁纸</li>
               <li>ZIP 一键下载</li>
             </ul>
             <p class="shop-bound">默认个人使用，转载请注明污兔酱的小窝</p>
             <div id="shop-wallpaper1-panel" class="shop-pay" data-stage="idle">
-              <button type="button" class="btn btn-fill" id="shop-wallpaper1-buy">购买 ZIP ¥6.9</button>
+              <button type="button" class="btn btn-outline" id="shop-wallpaper1-buy">购买 ZIP ¥6.9</button>
               <div class="shop-pay-checkout is-hidden" id="shop-wallpaper1-checkout">
                 <p class="shop-pay-lead" id="shop-wallpaper1-lead">请点「打开收银台」完成支付。微信内请勿长按页内二维码。</p>
                 <div class="shop-pay-qr-wrap is-hidden" id="shop-wallpaper1-qr-wrap">
@@ -367,10 +406,10 @@
                 <button type="button" class="btn btn-ghost" id="shop-wallpaper1-retry">重试</button>
               </div>
             </div>
-            <p class="shop-xsell">还想整理发帖节奏？看 <a href="#xhandbook">发帖小本子 ¥9.9</a>。</p>
+            <p class="shop-xsell">主推写真包：<a href="#wallpaper2">兔兔壁纸 vol.2 ¥9.9</a>。</p>
           </article>
 
-          <article class="shop-card shop-card--bundle" id="jpkit">
+<article class="shop-card shop-card--bundle" id="jpkit">
             <p class="price-tag">套装 先付再下载</p>
             <h3>离日+年金捆绑包</h3>
             <p class="amount">¥19.9 <span>/ 套</span></p>
