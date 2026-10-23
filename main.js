@@ -496,7 +496,7 @@
         if (!selectedFile) {
           showStage("pick");
           if (startBtn) {
-            startBtn.textContent = "已付款 · 上传照片生成";
+            startBtn.textContent = "已付款 上传照片生成";
             startBtn.disabled = true;
           }
           var once = function () {

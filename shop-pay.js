@@ -1,23 +1,38 @@
-/* 电子资料 · 先付再下载（product=jpkit | nenkin | jpleave …） */
+/* 电子资料 / 图包 先付再下载（product=xhandbook | wallpaper1 | jpkit | nenkin | jpleave …） */
 (function () {
   if (!window.WutuPay) return;
 
   var RETURN_URL = "https://wutu360.surge.sh/#shop?paid=1";
   var SKUS = [
     {
+      id: "xhandbook",
+      priceLabel: "¥9.9",
+      defaultFilename: "污兔酱-发帖节奏小本子-v1.pdf",
+      fileKind: "pdf",
+    },
+    {
+      id: "wallpaper1",
+      priceLabel: "¥6.9",
+      defaultFilename: "污兔酱-兔兔壁纸-vol1.zip",
+      fileKind: "zip",
+    },
+    {
       id: "jpkit",
       priceLabel: "¥19.9",
       defaultFilename: "污兔酱-离日年金捆绑包-v1-wutu360.surge.sh.zip",
+      fileKind: "zip",
     },
     {
       id: "nenkin",
       priceLabel: "¥9.9",
       defaultFilename: "污兔酱-年金自查清单-v1.pdf",
+      fileKind: "pdf",
     },
     {
       id: "jpleave",
       priceLabel: "¥12.9",
       defaultFilename: "污兔酱-日本离境手续全清单-v1.pdf",
+      fileKind: "pdf",
     },
   ];
 
@@ -156,14 +171,14 @@
           triggerDownload(res.blob, res.filename);
           if (state.dlBtn) {
             state.dlBtn.disabled = false;
-            state.dlBtn.textContent = pid === "jpkit" ? "再次下载 ZIP" : "再次下载 PDF";
+            state.dlBtn.textContent = sku.fileKind === "zip" ? "再次下载 ZIP" : "再次下载 PDF";
           }
         })
         .catch(function (err) {
           console.warn(pid + " download", err);
           if (state.dlBtn) {
             state.dlBtn.disabled = false;
-            state.dlBtn.textContent = pid === "jpkit" ? "下载 ZIP" : "下载 PDF";
+            state.dlBtn.textContent = sku.fileKind === "zip" ? "下载 ZIP" : "下载 PDF";
           }
           var msg = (err && err.message) || "";
           if (/未知商品|product|404|下载|not found|资料文件/i.test(msg)) {
@@ -231,17 +246,17 @@
       if (state.leadEl) {
         if (inWeChat) {
           state.leadEl.textContent =
-            "请点「打开收银台」完成支付（同页跳转）。微信内请勿长按页内二维码——本商户不支持长按识别支付。付完回站后自动解锁 PDF。";
+            "请点「打开收银台」完成支付（同页跳转）。微信内请勿长按页内二维码——本商户不支持长按识别支付。付完回站后自动解锁下载。";
         } else if (onMobile) {
           state.leadEl.textContent =
             "请点「打开收银台」用微信 / 支付宝完成 " +
             sku.priceLabel +
-            " 支付；付完回站后自动解锁 PDF。";
+            " 支付；付完回站后自动解锁下载。";
         } else {
           state.leadEl.textContent =
             "点「打开收银台」完成 " +
             sku.priceLabel +
-            " 支付后将自动解锁 PDF。也可扫下方二维码（仅电脑端可选）。";
+            " 支付后将自动解锁下载。也可扫下方二维码（仅电脑端可选）。";
         }
       }
       showStage("pay");

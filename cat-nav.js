@@ -12,13 +12,13 @@
   var DOCK = {
     orbit: {
       title: "污兔360",
-      sub: "¥9.9 · 先付再出片",
+      sub: "¥9.9 先付再出片",
       cta: "上传下单",
       href: "#buy"
     },
     shop: {
       title: "年金清单",
-      sub: "¥9.9 · 电子资料",
+      sub: "¥9.9+ 电子资料",
       cta: "买资料",
       href: "#shop"
     }
@@ -32,8 +32,8 @@
 
   function catFromHash() {
     var h = hashKey();
-    /* shop SKUs: #shop / #nenkin / #jpkit / #jpleave (and paid return query) */
-    if (h === "shop" || h === "nenkin" || h === "jpkit" || h === "jpleave") return "shop";
+    /* shop SKUs */
+    if (h === "shop" || h === "nenkin" || h === "jpkit" || h === "jpleave" || h === "xhandbook" || h === "wallpaper1") return "shop";
     if (h === "orbit" || h === "buy" || h === "how" || h === "demo" || h === "pricing") return "orbit";
     /* paid return may be #shop?paid=1 or #buy?paid=1 */
     var full = (location.hash || "").toLowerCase();
@@ -41,7 +41,9 @@
       full.indexOf("shop") >= 0 ||
       full.indexOf("nenkin") >= 0 ||
       full.indexOf("jpkit") >= 0 ||
-      full.indexOf("jpleave") >= 0
+      full.indexOf("jpleave") >= 0 ||
+      full.indexOf("xhandbook") >= 0 ||
+      full.indexOf("wallpaper1") >= 0
     )
       return "shop";
     if (full.indexOf("buy") >= 0 || full.indexOf("orbit") >= 0) return "orbit";
@@ -96,7 +98,7 @@
     syncDock(cat);
 
     if (opts.updateHash) {
-      var want = cat === "shop" ? "shop" : opts.hash || "orbit";
+      var want = opts.hash || (cat === "shop" ? "shop" : "orbit");
       var cur = hashKey();
       /* Preserve query on paid return */
       var q = "";
@@ -133,7 +135,13 @@
     chip.addEventListener("click", function () {
       var cat = chip.getAttribute("data-cat");
       if (!cat || chip.disabled) return;
-      setCat(cat, { updateHash: true, hash: cat === "shop" ? "shop" : "orbit", scroll: true });
+      var scrollId = chip.getAttribute("data-scroll-id");
+      var hashWant = scrollId || (cat === "shop" ? "shop" : "orbit");
+      setCat(cat, {
+        updateHash: true,
+        hash: hashWant,
+        scroll: scrollId || true
+      });
     });
   });
 
@@ -150,10 +158,11 @@
   document.querySelectorAll(".price-card--btn[data-cat]").forEach(function (card) {
     card.addEventListener("click", function () {
       var cat = card.getAttribute("data-cat");
+      var scrollId = card.getAttribute("data-scroll-id");
       setCat(cat, {
         updateHash: true,
-        hash: cat === "shop" ? "shop" : "buy",
-        scroll: cat === "shop" ? "shop" : "buy"
+        hash: scrollId || (cat === "shop" ? "shop" : "buy"),
+        scroll: scrollId || (cat === "shop" ? "shop" : "buy")
       });
     });
   });
@@ -163,7 +172,7 @@
     var h = hashKey();
     var scrollTo = false;
     if (scroll) {
-      if (h === "buy" || h === "how" || h === "demo" || h === "nenkin" || h === "shop" || h === "jpkit" || h === "jpleave") scrollTo = h;
+      if (h === "buy" || h === "how" || h === "demo" || h === "nenkin" || h === "shop" || h === "jpkit" || h === "jpleave" || h === "xhandbook" || h === "wallpaper1") scrollTo = h;
       else if (h === "orbit" || h === "pricing") scrollTo = "cat-bar";
     }
     setCat(cat, {
